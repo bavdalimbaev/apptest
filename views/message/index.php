@@ -173,24 +173,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 </ul>
             </div>
-            <div class="panel-footer">
-                <?php
-                $form = ActiveForm::begin(['id' => 'message-form', 'class' => 'input-group']); ?>
+            <?php
+            if (!Yii::$app->user->isGuest): ?>
+                <div class="panel-footer">
+                    <?php
+                    $form = ActiveForm::begin(['id' => 'message-form', 'class' => 'input-group']); ?>
 
-                <?= $form->field($messageForm, 'report')->textInput(
-                    ['class' => 'form-control input-sm', 'placeholder' => 'Type your message here...']
-                )->label(false) ?>
+                    <?= $form->field($messageForm, 'report')->textInput(
+                        ['class' => 'form-control input-sm', 'placeholder' => 'Type your message here...']
+                    )->label(false) ?>
 
-                <span class="input-group-btn">
+                    <span class="input-group-btn">
                     <?= Html::submitButton(
                         'Отправить',
                         ['class' => 'btn btn-warning btn-block', 'name' => 'messageButton']
                     ) ?>
                 </span>
 
-                <?php
-                ActiveForm::end(); ?>
-            </div>
+                    <?php
+                    ActiveForm::end(); ?>
+                </div>
+            <?php
+            endif; ?>
         </div>
     </div>
 
